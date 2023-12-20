@@ -4,8 +4,7 @@ class BinarySearchTree:
     self.depth = depth
     self.left = None
     self.right = None
-    
-  # Define .insert() below:
+
   def insert(self, value):
     if (value < self.value):
       if (self.left is None):
@@ -19,11 +18,25 @@ class BinarySearchTree:
         print(f'Tree node {value} added to the right of {self.value} at depth {self.depth + 1}')
       else:
         self.right.insert(value)
-      
+        
+  # Define .get_node_by_value() below:
+  def get_node_by_value(self, value):
+    if (self.value == value):
+      return self
+    elif (self.left is not None and value < self.value):
+      return self.left.get_node_by_value(value)
+    elif (self.right is not None and value > self.value):
+      return self.right.get_node_by_value(value)
+    else:
+      return None
   
 root = BinarySearchTree(100)
+
 root.insert(50)
 root.insert(125)
 root.insert(75)
 root.insert(25)
-# Insert values below:
+
+# Get nodes by value below:
+print(root.get_node_by_value(75).value)
+print(root.get_node_by_value(55))
